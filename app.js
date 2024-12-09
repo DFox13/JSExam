@@ -1,7 +1,8 @@
 document.querySelector('.board').addEventListener('click', function(){
     document.querySelector('.board').classList.toggle('board-initial');
-    document.querySelector('.board').classList.toggle('.board-final');
-})
+    document.querySelector('.board').classList.toggle('board-final');
+});
+const actors = [];
 
 draw();
 function draw(){
