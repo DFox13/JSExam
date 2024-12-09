@@ -1,6 +1,6 @@
 const actors = ['wolf', 'lamb', 'cabbage'];
 let left = actors.slice();
-let onBoard = [];
+let boat = [];
 let right = [];
 
 document.querySelector('.board').addEventListener('click', function(){
@@ -31,6 +31,21 @@ function createActor(actor){
     actorImage.alt = actor;
 
     actorImage.addEventListener('click', function(){
+        if (actor === 'wolf' && left.includes('lamb') && left.length === 2||actor === 'wolf' && right.includes('lamb') && right.length === 2) {
+            alert('FAIL')
+            return;
+        }
+        
+        if (actor === 'lamb' && left.includes('wolf') && left.length === 2|| actor === 'lamb' && right.includes('wolf') && right.length === 2) {
+            alert('FAIL')
+            return;
+        }
+        
+        if (actor === 'lamb' && left.includes('cabbage') && left.length === 2||actor === 'lamb' && right.includes('cabbage') && right.length === 2) {
+            alert('FAIL')
+            return;
+        }
+        
         if (left.includes(actor)) {
             left = left.filter(a => a !== actor);
             right.push(actor);
@@ -46,17 +61,3 @@ function createActor(actor){
     return actorItem;
 }
 
-
-function seat(character) {
-    if (character === 'wolf') {
-        left = left.filter(actor => actor !== 'wolf');
-        right.push('wolf');
-    } else if (character === 'lamb') {
-        left = left.filter(actor => actor !== 'lamb');
-        right.push('lamb');
-    } else if (character === 'cabbage') {
-        left = left.filter(actor => actor !== 'cabbage');
-        right.push('cabbage');
-    }
-    draw();
-}
