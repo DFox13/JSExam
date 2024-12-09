@@ -6,6 +6,15 @@ let right = [];
 document.querySelector('.board').addEventListener('click', function(){
     document.querySelector('.board').classList.toggle('board-initial');
     document.querySelector('.board').classList.toggle('board-final');
+    if (left.length === 0 && right.length === actors.length) {
+        alert('Congratulations! You have won!');
+        return;
+    }
+    if (boat === left) {
+        boat = right;
+    } else {
+        boat = left;
+  }
 });
 draw();
 
@@ -31,17 +40,17 @@ function createActor(actor){
     actorImage.alt = actor;
 
     actorImage.addEventListener('click', function(){
-        if (actor === 'wolf' && left.includes('lamb') && left.length === 2||actor === 'wolf' && right.includes('lamb') && right.length === 2) {
+        if (actor === 'wolf' && left.includes('lamb') && boat ===left && left.length === 2||actor === 'wolf' && boat ===right &&  right.includes('lamb') && right.length === 2) {
             alert('FAIL')
             return;
         }
         
-        if (actor === 'lamb' && left.includes('wolf') && left.length === 2|| actor === 'lamb' && right.includes('wolf') && right.length === 2) {
+        if (actor === 'lamb' && left.includes('wolf') && boat ===left && left.length === 2|| actor === 'lamb' && boat ===right && right.includes('wolf') && right.length === 2) {
             alert('FAIL')
             return;
         }
         
-        if (actor === 'lamb' && left.includes('cabbage') && left.length === 2||actor === 'lamb' && right.includes('cabbage') && right.length === 2) {
+        if (actor === 'lamb' && left.includes('cabbage') && boat ===left && left.length === 2||actor === 'lamb' && boat ===right && right.includes('cabbage') && right.length === 2) {
             alert('FAIL')
             return;
         }
